@@ -1,0 +1,661 @@
+// ==============================================================================
+// SAUDI LAW FIRM LUXURY TEMPLATE - SASS / SCSS STYLESHEET
+// Architecture Inspired by: Aledini Law Firm (مكتب العديني للمحاماة والاستشارات القانونية)
+// Target Framework: Modern Saudi Legal Practice, Corporate Advisory & Najiz Litigation
+// Character: Prestigious White, Najdi Warm Limestone, Saudi Royal Green & Arabian Gold
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. DESIGN TOKENS & SYSTEM VARIABLES
+// ------------------------------------------------------------------------------
+
+// Saudi Royal Color Palette
+$color-saudi-green-dark:   #0A3E22;  // Deep sovereign green
+$color-saudi-green:        #0D5B36;  // Saudi National / Bar Association Green
+$color-saudi-green-light:  #147846;  // Vibrant emerald accent
+$color-saudi-green-subtle: #EBF7EE;  // Soft green badge tint
+$color-saudi-green-border: #BCE4C6;  // Border highlight
+
+// Arabian Heritage Gold & Brass Accents
+$color-gold-dark:          #8B6508;  // Burnished antique brass
+$color-gold-primary:       #B8860B;  // Rich Najdi gold
+$color-gold-light:         #D4AF37;  // Metallic gold highlight
+$color-gold-champagne:     #F3E5AB;  // Warm champagne tone
+
+// Backgrounds & Surface Textures (Crisp White + Najdi Limestone)
+$color-bg-base:            #FAF8F5;  // Warm alabaster / limestone
+$color-bg-surface:         #FFFFFF;  // Crisp pure white cards
+$color-bg-secondary:       #F6F2EA;  // Subtle cream container
+$color-border-subtle:      #EAE1D1;  // Hairline border
+$color-border-focus:       #C5A059;  // Focused input border
+
+// Typography Contrast Colors
+$color-text-headline:      #14261C;  // Authoritative deep charcoal
+$color-text-body:          #2E3B34;  // Highly legible prose text
+$color-text-muted:         #6B7A72;  // Informational metadata
+$color-text-inverse:       #FFFFFF;  // Contrast text on green/gold
+
+// WhatsApp Brand Signature
+$color-whatsapp-primary:   #25D366;
+$color-whatsapp-dark:      #128C7E;
+$color-whatsapp-chat-bg:   #EFEAE2;
+
+// Typography Stacks
+$font-arabic-display:      'Amiri', 'Traditional Arabic', serif;
+$font-arabic-body:         'Cairo', 'Tajawal', sans-serif;
+$font-latin-display:       'Cinzel', 'Playfair Display', serif;
+$font-latin-body:          'Plus Jakarta Sans', system-ui, sans-serif;
+
+// Spacing & Breakpoints
+$container-max-width:      1280px;
+$radius-sm:                8px;
+$radius-md:                14px;
+$radius-lg:                22px;
+$radius-full:              9999px;
+
+// Elevation & Shadows
+$shadow-card-subtle:       0 2px 8px -1px rgba(0, 0, 0, 0.04), 0 1px 3px -1px rgba(184, 134, 11, 0.06);
+$shadow-card-hover:        0 14px 34px -4px rgba(13, 91, 54, 0.12), 0 4px 12px -2px rgba(184, 134, 11, 0.08);
+$shadow-dropdown:          0 20px 40px -8px rgba(0, 0, 0, 0.15);
+
+// ------------------------------------------------------------------------------
+// 2. MIXINS
+// ------------------------------------------------------------------------------
+
+@mixin rtl-direction {
+  direction: rtl;
+  text-align: right;
+}
+
+@mixin ltr-direction {
+  direction: ltr;
+  text-align: left;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin white-card {
+  background-color: $color-bg-surface;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card-subtle;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    border-color: $color-saudi-green;
+    box-shadow: $shadow-card-hover;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin saudi-green-button {
+  background: linear-gradient(135deg, $color-saudi-green 0%, $color-saudi-green-light 100%);
+  color: $color-text-inverse;
+  font-weight: 700;
+  border: none;
+  border-radius: $radius-md;
+  padding: 0.85rem 1.6rem;
+  box-shadow: 0 4px 14px rgba(13, 91, 54, 0.25);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+
+  &:hover {
+    background: linear-gradient(135deg, $color-saudi-green-light 0%, #178F55 100%);
+    box-shadow: 0 6px 20px rgba(13, 91, 54, 0.35);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin gold-outlined-button {
+  background-color: $color-bg-surface;
+  color: $color-gold-dark;
+  font-weight: 700;
+  border: 1.5px solid $color-gold-primary;
+  border-radius: $radius-md;
+  padding: 0.85rem 1.6rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+
+  &:hover {
+    background-color: $color-bg-base;
+    border-color: $color-gold-dark;
+    color: $color-gold-dark;
+    transform: translateY(-2px);
+  }
+}
+
+// ------------------------------------------------------------------------------
+// 3. BASE & RESET RULES
+// ------------------------------------------------------------------------------
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: $color-bg-base;
+  color: $color-text-headline;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-arabic-body;
+  background-color: $color-bg-base;
+  color: $color-text-body;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+// ------------------------------------------------------------------------------
+// 4. HEADER & NAVIGATION STYLES
+// ------------------------------------------------------------------------------
+
+.law-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $color-border-subtle;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  padding: 0.75rem 0;
+
+  .header-container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+
+    .brand-name {
+      font-family: $font-arabic-display;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: $color-saudi-green;
+      line-height: 1.2;
+    }
+
+    .brand-tagline {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: $color-gold-dark;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    a {
+      text-decoration: none;
+      color: $color-text-headline;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $color-saudi-green;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: $color-saudi-green;
+        transform: scaleX(0);
+        transition: transform 0.2s ease;
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .whatsapp-quick-btn {
+      @include saudi-green-button;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.82rem;
+      border-radius: $radius-sm;
+    }
+  }
+}
+
+// ------------------------------------------------------------------------------
+// 5. HERO SECTION (SAUDI SKYLINE & WHITE ARCHITECTURE)
+// ------------------------------------------------------------------------------
+
+.law-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7rem 1.5rem 4rem;
+  background-color: $color-bg-base;
+  overflow: hidden;
+
+  .hero-bg-visual {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    // Light Alabaster Vignette
+    .vignette-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(250, 248, 245, 0.65) 0%,
+        rgba(250, 248, 245, 0.85) 60%,
+        rgba(250, 248, 245, 1) 100%
+      );
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-col: column;
+    align-items: center;
+
+    .moj-license-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 1px solid $color-border-subtle;
+      padding: 0.4rem 1.1rem;
+      border-radius: $radius-full;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: $color-saudi-green;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-headline {
+      font-family: $font-arabic-display;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      color: $color-text-headline;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+
+      .highlight-green {
+        color: $color-saudi-green;
+        display: block;
+      }
+
+      .highlight-gold {
+        color: $color-gold-dark;
+      }
+    }
+
+    .hero-subtext {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: $color-text-body;
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+
+      .btn-primary {
+        @include saudi-green-button;
+      }
+
+      .btn-secondary {
+        @include gold-outlined-button;
+      }
+    }
+
+    .stats-ribbon {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 850px;
+      margin-top: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid $color-border-subtle;
+
+      .stat-item {
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 1px solid $color-border-subtle;
+        border-radius: $radius-md;
+        padding: 1.25rem;
+        text-align: center;
+        box-shadow: $shadow-card-subtle;
+
+        .stat-number {
+          font-family: $font-latin-display;
+          font-size: 1.85rem;
+          font-weight: 800;
+          color: $color-saudi-green;
+          display: block;
+          margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+          font-size: 0.8rem;
+          color: $color-text-muted;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------------------------------------------------------
+// 6. PRACTICE AREAS & PREVENTATIVE LEGAL SERVICES
+// ------------------------------------------------------------------------------
+
+.law-services-section {
+  padding: 5rem 1.5rem;
+  background-color: $color-bg-base;
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+
+    .section-kicker {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: $color-saudi-green;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: $font-arabic-display;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: $color-text-headline;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-desc {
+      font-size: 0.95rem;
+      color: $color-text-muted;
+    }
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    max-width: $container-max-width;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    @include white-card;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .service-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: $radius-md;
+      background-color: $color-bg-secondary;
+      border: 1px solid $color-border-subtle;
+      @include flex-center;
+      color: $color-saudi-green;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-title {
+      font-family: $font-arabic-display;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: $color-text-headline;
+      margin-bottom: 0.4rem;
+    }
+
+    .service-tagline {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: $color-saudi-green;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-summary {
+      font-size: 0.88rem;
+      color: $color-text-body;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid $color-bg-secondary;
+
+      .details-link {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: $color-gold-dark;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+
+        &:hover {
+          color: $color-saudi-green;
+        }
+      }
+
+      .consult-btn {
+        background-color: $color-bg-secondary;
+        border: 1px solid $color-border-subtle;
+        color: $color-text-headline;
+        padding: 0.4rem 0.85rem;
+        border-radius: $radius-sm;
+        font-size: 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: $color-saudi-green;
+          color: $color-text-inverse;
+          border-color: $color-saudi-green;
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------------------------------------------------------
+// 7. CONSULTATION INTAKE FORM (WHATSAPP AUTOMATION)
+// ------------------------------------------------------------------------------
+
+.law-consultation-section {
+  padding: 5rem 1.5rem;
+  background-color: $color-bg-surface;
+  border-top: 1px solid $color-border-subtle;
+
+  .intake-layout {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .intake-form-box {
+    background-color: $color-bg-base;
+    border: 1px solid $color-border-subtle;
+    border-radius: $radius-lg;
+    padding: 2.5rem;
+    box-shadow: $shadow-card-subtle;
+
+    .form-group {
+      margin-bottom: 1.25rem;
+
+      label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: $color-text-headline;
+        margin-bottom: 0.4rem;
+      }
+
+      input, select, textarea {
+        width: 100%;
+        background-color: $color-bg-surface;
+        border: 1.5px solid $color-border-subtle;
+        border-radius: $radius-sm;
+        padding: 0.75rem 1rem;
+        font-family: inherit;
+        font-size: 0.9rem;
+        color: $color-text-headline;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease;
+
+        &:focus {
+          outline: none;
+          border-color: $color-saudi-green;
+          box-shadow: 0 0 0 3px rgba(13, 91, 54, 0.1);
+        }
+      }
+    }
+
+    .submit-whatsapp-btn {
+      @include saudi-green-button;
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+    }
+  }
+
+  .whatsapp-preview-box {
+    background-color: $color-bg-base;
+    border: 1px solid $color-border-subtle;
+    border-radius: $radius-lg;
+    padding: 1.5rem;
+    box-shadow: $shadow-card-subtle;
+
+    .chat-bubble-viewport {
+      background-color: $color-whatsapp-chat-bg;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: $radius-md;
+      padding: 1.25rem;
+      font-family: monospace;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #111;
+      white-space: pre-wrap;
+      max-height: 380px;
+      overflow-y: auto;
+    }
+  }
+}
+
+// ------------------------------------------------------------------------------
+// 8. FLOATING WHATSAPP PILL & ACCREDITATION FOOTER
+// ------------------------------------------------------------------------------
+
+.floating-whatsapp-widget {
+  position: fixed;
+  bottom: 24px;
+  left: 24px; // RTL default
+  z-index: 1000;
+
+  .trigger-btn {
+    @include saudi-green-button;
+    padding: 0.85rem 1.4rem;
+    border-radius: $radius-full;
+    box-shadow: 0 8px 24px rgba(13, 91, 54, 0.35);
+  }
+}
+
+.law-footer {
+  background-color: $color-bg-secondary;
+  border-top: 1px solid $color-border-subtle;
+  padding: 4rem 1.5rem 2rem;
+  font-size: 0.82rem;
+  color: $color-text-muted;
+
+  .footer-inner {
+    max-width: $container-max-width;
+    margin: 0 auto;
+  }
+
+  .disclaimer-text {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid $color-border-subtle;
+    font-size: 0.75rem;
+    line-height: 1.7;
+  }
+}

@@ -3,6 +3,7 @@ import { EmblemLogo } from './EmblemLogo';
 import { LAWYER_INFO } from '../data/content';
 import { Language } from '../types';
 import { ShieldCheck, ChevronRight, ChevronLeft } from 'lucide-react';
+import saudiCultureHero from '../assets/images/saudi_culture_hero_1791285547892.jpg';
 
 interface HeroProps {
   lang: Language;
@@ -19,7 +20,7 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Authentic Saudi Cultural Architecture Background (Diriyah Najdi Limestone & Palm Shadows) */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
-          src="/src/assets/images/saudi_culture_hero_1791285547892.jpg"
+          src={saudiCultureHero}
           alt="العمارة التراثية النجدية السعودية - مكتب المحامي علي الزيلعي"
           className="w-full h-full object-cover object-center filter brightness-100 contrast-105 saturate-105 scale-100 opacity-95 transition-opacity duration-300"
         />

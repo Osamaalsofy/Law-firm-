@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import officialLogo from '../assets/images/alzaylai_official_logo_1791286972387.jpg';
 
 interface EmblemLogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'hero';
@@ -40,7 +41,7 @@ export const EmblemLogo: React.FC<EmblemLogoProps> = ({
         {useImage && !imgError ? (
           <div className="w-full h-full rounded-full p-[2px] bg-gradient-to-tr from-[#947118] via-[#ECC867] to-[#0D5B36] shadow-md flex items-center justify-center overflow-hidden">
             <img
-              src="/src/assets/images/alzaylai_official_logo_1791286972387.jpg"
+              src={officialLogo}
               alt="شعار مكتب المحامي علي عبدالله الزيلعي"
               className="w-full h-full object-cover rounded-full"
               onError={() => setImgError(true)}

@@ -3,6 +3,7 @@ import { EmblemLogo } from './EmblemLogo';
 import { LAWYER_INFO, UI_TRANSLATIONS } from '../data/content';
 import { Language } from '../types';
 import { Shield, BookOpen, Award, Scale, CheckCircle2, MapPin } from 'lucide-react';
+import saudiLawOffice from '../assets/images/saudi_law_office_1791284926955.jpg';
 
 interface AboutLawyerProps {
   lang: Language;
@@ -22,7 +23,7 @@ export const AboutLawyer: React.FC<AboutLawyerProps> = ({ lang }) => {
               {/* Photo preview of Saudi law office */}
               <div className="relative w-full h-48 rounded-2xl overflow-hidden mb-6 border border-[#E0D5C1] shadow-inner">
                 <img
-                  src="/src/assets/images/saudi_law_office_1791284926955.jpg"
+                  src={saudiLawOffice}
                   alt="مقر مكتب المحامي علي عبدالله الزيلعي للمحاماة"
                   className="w-full h-full object-cover"
                 />

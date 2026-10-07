@@ -146,7 +146,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang }) => {
                 className="flex items-center justify-center gap-2 w-full py-2 rounded-xl border border-[#E0D5C1] bg-[#FDFBF7] text-slate-700 text-sm font-semibold"
               >
                 <Phone className="w-4 h-4 text-[#0D5B36]" />
-                <span dir="ltr">056 818 6467</span>
+                <span dir="ltr">053 782 6875</span>
               </a>
             </div>
           </div>

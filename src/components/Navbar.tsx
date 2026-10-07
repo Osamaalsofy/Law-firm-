@@ -82,14 +82,14 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang }) => {
               <span>{lang === 'ar' ? 'English' : 'العربية'}</span>
             </button>
 
-            {/* Direct Call to 0568186467 */}
+            {/* Direct Call to 0537826875 */}
             <a
-              href="tel:+966568186467"
+              href="tel:+966537826875"
               className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#E0D5C1] bg-white hover:bg-[#F9F6F0] text-slate-700 hover:text-[#0D5B36] transition-colors shadow-xs text-xs font-bold"
-              title={lang === 'ar' ? 'اتصال هاتفي مباشر: 0568186467' : 'Direct Call: +966568186467'}
+              title={lang === 'ar' ? 'اتصال هاتفي مباشر: 0537826875' : 'Direct Call: +966537826875'}
             >
               <Phone className="w-3.5 h-3.5 text-[#0D5B36]" />
-              <span dir="ltr" className="font-mono">056 818 6467</span>
+              <span dir="ltr" className="font-mono">053 782 6875</span>
             </a>
 
             {/* Fast Action Consultation Button */}
